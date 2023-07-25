@@ -26,3 +26,16 @@ $client2 = new Client("Jane", "Doe");
 echo "<p>Bonjour ".$client2->getFullname()."</p>";
 
 // Créer dans la classe Client les accesseurs et mutateurs, puis les utiliser pour mettre à jour une donnée d'un client (email)
+
+$client2
+    ->setEmail("jane.doe@gmail.com")
+    ->setBirthday(new DateTime("1981-10-21"));
+
+printf(
+    "<p>L'adresse email de %s, née le %s est %s</p>", 
+    $client2->getFullname(), 
+    $client2->getBirthday()->format("l d F Y"),
+    $client2->getEmail()
+);
+
+// transformer un objet en chaine de caractère
