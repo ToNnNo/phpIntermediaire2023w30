@@ -43,3 +43,11 @@ printf(
 echo "<p>" . $client . "</p>";
 
 // formater une date en fonction de la locale
+
+$dateFormatter = new IntlDateFormatter('fr', IntlDateFormatter::FULL, IntlDateFormatter::MEDIUM);
+
+// date de référence 01/01/1970 -> nombre de seconde écoulé depuis le 01/01/70 = timestamps
+
+$date2038 = new DateTime("2038-01-20T14:30:25");
+
+echo $dateFormatter->format($date2038);
