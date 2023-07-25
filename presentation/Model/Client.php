@@ -18,6 +18,8 @@ class Client {
 
     private ?string $civility; // Monsieur/Madame => M / Mme | monsieur / madame
 
+    private ?Address $address;
+
     public function __construct(
         ?string $firstname = null, 
         ?string $lastname = null, 
@@ -92,6 +94,18 @@ class Client {
     public function setCivility(?string $civility): self
     {
         $this->civility = $civility;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }
