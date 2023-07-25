@@ -72,4 +72,11 @@ class Client {
     {
         return $this->firstname . " " . $this->lastname;
     }
+
+    // la méthode toString est appelé automatique quand on
+    // utilise le mot clé "echo" devant une instance
+    public function __toString(): string
+    {
+        return "Objet de type Client";
+    }
 }

@@ -39,3 +39,7 @@ printf(
 );
 
 // transformer un objet en chaine de caractère
+
+echo "<p>" . $client . "</p>";
+
+// formater une date en fonction de la locale
