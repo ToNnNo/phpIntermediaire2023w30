@@ -51,3 +51,20 @@ $dateFormatter = new IntlDateFormatter('fr', IntlDateFormatter::FULL, IntlDateFo
 $date2038 = new DateTime("2038-01-20T14:30:25");
 
 echo $dateFormatter->format($date2038);
+
+echo "<hr />";
+
+$client3 = new Client("James", "Bond");
+
+Client::$class_version = "1.1";
+
+printf("<p>Version de classe Client: %s</p>", Client::$class_version);
+
+printf(
+    "<p>Nombre d'instance de classe Client: %s</p>", 
+    Client::getNbInstance()
+);
+
+$client->setCivility(Client::MONSIEUR);
+$client2->setCivility(Client::MADAME);
+$client3->setCivility(Client::MONSIEUR);

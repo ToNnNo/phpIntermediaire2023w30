@@ -2,6 +2,12 @@
 
 class Client {
 
+    public const MONSIEUR = "Monsieur";
+    public const MADAME = "Madame";
+
+    public static string $class_version = "1.0";
+    private static int $nb_instance = 0;
+
     private ?string $firstname; // ?string peut recevoir soit une valeur string ou null
 
     private ?string $lastname;
@@ -10,12 +16,22 @@ class Client {
 
     private ?string $email;
 
-    public function __construct(?string $firstname = null, ?string $lastname = null, ?DateTime $birthday = null, ?string $email = null)
-    {
+    private ?string $civility; // Monsieur/Madame => M / Mme | monsieur / madame
+
+    public function __construct(
+        ?string $firstname = null, 
+        ?string $lastname = null, 
+        ?DateTime $birthday = null, 
+        ?string $email = null,
+        ?string $civility = null
+    ) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->birthday = $birthday;
         $this->email = $email;
+        $this->civility = $civility;
+
+        self::$nb_instance++;
     }
 
     // getter / setter
@@ -68,6 +84,18 @@ class Client {
         return $this;
     }
 
+    public function getCivility(): string
+    {
+        return $this->civility;
+    }
+ 
+    public function setCivility(?string $civility): self
+    {
+        $this->civility = $civility;
+
+        return $this;
+    }
+
     public function getFullname(): string
     {
         return $this->firstname . " " . $this->lastname;
@@ -78,5 +106,10 @@ class Client {
     public function __toString(): string
     {
         return "Objet de type Client";
+    }
+
+    public static function getNbInstance(): int 
+    {
+        return self::$nb_instance;
     }
 }
