@@ -20,7 +20,7 @@ $address = new Address("256 avenue de la marne", "59000", "Lille", "France");
 // echo $address->getFullAddress();
 
 $client = new Client("John", "Doe");
-$client->setAddress($address); // l'aggrégation
+$client->setAddress($address); // l'agrégation
 
 echo "<h2>Adresse de ".$client->getFullname()."</h2>";
 echo "<address>";
