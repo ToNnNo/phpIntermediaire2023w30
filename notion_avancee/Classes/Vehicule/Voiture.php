@@ -25,16 +25,19 @@ class Voiture {
 
     public function demarrer(): string
     {
-        return "Notre ". strtolower(get_class($this)) ." démarre";
+        // return "Notre ". strtolower(self::class) ." démarre";
+        return "Notre ". strtolower(static::class) ." démarre";
     }
 
     public function avancer(): string
     {
-        return "Notre ". strtolower(get_class($this)) ." avance";
+        // return "Notre ". strtolower(self::class) ." avance";
+        return "Notre ". strtolower(static::class) ." avance";
     }
 
     public function arreter(): string
     {
-        return "Notre ". strtolower(get_class($this)) ." s'arrete";
+        // return "Notre ". strtolower(self::class) ." s'arrete";
+        return "Notre ". strtolower(static::class) ." s'arrete";
     }
 }

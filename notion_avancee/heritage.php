@@ -1,12 +1,14 @@
 <?php 
 use Classes\Vehicule\Ambulance;
+use Classes\Vehicule\SuperAmbulance;
 use Classes\Vehicule\Voiture;
 
 require_once "../autoload.php";
 
+echo "<h2>Voiture</h2>";
+
 $voiture = new Voiture("Citroen", "DS3");
 
-echo "<h2>Voiture</h2>";
 printf("<p>%s</p>", $voiture->demarrer());
 printf("<p>%s</p>", $voiture->avancer());
 printf("<p>%s</p>", $voiture->arreter());
@@ -23,3 +25,9 @@ printf(
     $ambulance->getModele(),
     $ambulance->getSireneState() ? "Allumée" : "Éteinte"
 );
+
+printf("<p>%s</p>", $ambulance->demarrer());
+printf("<p>%s</p>", $ambulance->avancer());
+printf("<p>%s</p>", $ambulance->arreter());
+
+new SuperAmbulance(); // impossible, la classe ambulance est final

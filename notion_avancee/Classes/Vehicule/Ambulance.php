@@ -2,7 +2,7 @@
 
 namespace Classes\Vehicule;
 
-class Ambulance extends Voiture {
+final class Ambulance extends Voiture {
 
     const SON = "PIN PON";
 
@@ -27,6 +27,19 @@ class Ambulance extends Voiture {
         $this->sirene = !$this->sirene;
 
         return $this;
+    }
+
+    public function avancer(): string
+    {
+        $message = "";
+        
+        if($this->getSireneState()) {
+            $message .= self::SON . " " . self::SON . "! ";
+        }
+
+        $message .= parent::avancer();
+
+        return $message;
     }
 
     // overriding + abstract
