@@ -16,6 +16,13 @@ $connection = new Controller\ConnectionController();
         <main class="row align-items-center">
             <div class="offset-4 col-4">
                 <h1>Connexion</h1>
+
+                <?php if(array_key_exists('authenticate', $form_errors)): ?>
+                    <?php foreach($form_errors['authenticate'] as $error): ?>
+                        <p class="text-danger"><?php echo $error; ?></p>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
                 <form method="post" action="">
                     <div class="mb-3">
                         <label>Username</label>

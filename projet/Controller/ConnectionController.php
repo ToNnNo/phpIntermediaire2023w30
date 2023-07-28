@@ -2,7 +2,32 @@
 
 namespace Controller;
 
+use Model\User;
+use PDO;
+use Service\Authenticator;
+use Service\Redirect;
+
 class ConnectionController {
+
+    private PDO $pdo;
+    private Authenticator $authenticator;
+    private Redirect $redirectResponse;
+
+    public function __construct()
+    {
+        $host = "localhost:8889"; // localhost:3306
+        $dbname = "POEPHP2023W30";
+
+        $dsn = sprintf("mysql:host=%s;dbname=%s;charset=utf8", 
+            $host, $dbname);
+        $username = "root";
+        $password = "root";
+        $this->pdo = new PDO($dsn, $username, $password, [ 
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ]);
+
+        $this->authenticator = new Authenticator();
+        $this->redirectResponse = new Redirect();
+    }
 
     public function login(): array
     {
@@ -28,12 +53,23 @@ class ConnectionController {
                 // réaliser l'authentification
 
                 // 1 - aller rechercher les données d'un utilisateur (id, password, name)
+                $sql = "SELECT id, `password`, `name` FROM user WHERE username = :username";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute(['username' => $username]);
+                $user = $stmt->fetchObject(User::class);
+                
+                if($user instanceof User) {
+                    // 2 - comparer le mot de passe (check_password())
+                    if( password_verify($password, $user->getPassword()) ) {
+                        // 3 - sauvegarde l'utilisateur dans la session
+                        $this->authenticator->saveUser($user);
 
-                // 2 - comparer le mot de passe (check_password())
+                        // 3bis - rediriger l'utilisateur (index.php)
+                        $this->redirectResponse->redirect("./");
+                    }
+                }
 
-                // 3 - sauvegarde l'utilisateur dans la session
-
-                // 3bis - rediriger l'utilisateur (index.php)
+                $form_errors['authenticate'][] = "Erreur d'identification";
             }
         }
 
