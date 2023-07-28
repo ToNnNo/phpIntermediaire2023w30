@@ -28,4 +28,9 @@ class Authenticator {
     {
         return unserialize($_SESSION[self::USER]);
     }
+
+    public function logout(): void 
+    {
+        session_destroy();
+    }
 }

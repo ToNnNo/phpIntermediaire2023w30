@@ -23,7 +23,11 @@ class IndexController {
             $this->redirectResponse->redirect("connection.php");
         }
 
-        return [];
+        $user = $this->authenticator->getUser();
+
+        return [
+            'user' => $user
+        ];
     }
 
 }
