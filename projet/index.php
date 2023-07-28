@@ -1,3 +1,9 @@
+<?php 
+require_once "../autoload.php";
+$controller = new Controller\IndexController();
+$controller->index();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
